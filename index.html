@@ -218,7 +218,6 @@
       transition: transform 0.22s var(--ease-lux), filter 0.22s var(--ease-lux);
     }
 
-    /* Estado Hover para Desktop */
     @media (hover: hover) and (pointer: fine) {
       .prop-node:hover img {
         transform: translateY(-4px) scale(1.04);
@@ -226,7 +225,6 @@
       }
     }
 
-    /* Retroalimentación Táctil para Móviles (Micro-interacción Dorada) */
     .prop-node:active img,
     .prop-node.is-touched img {
       transform: scale(0.94) translateY(2px);
@@ -370,6 +368,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       min-height: 44px;
       padding: 10px;
       border-radius: 6px;
@@ -377,6 +376,13 @@
       font-weight: 600;
       text-decoration: none;
       transition: transform 0.15s ease, background 0.2s;
+    }
+
+    .action-link svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      stroke-width: 2;
     }
 
     .action-link-gold {
@@ -488,11 +494,43 @@
         <p class="profile-subtitle">Propiedad Intelectual &amp; Estrategia Contractual</p>
         <p class="profile-meta">Cédula Prof. 15550402 | Socio en SANEC</p>
         
+        <!-- Grid con Iconos Vectoriales Minimalistas y enlace nativo a vCard -->
         <div class="action-grid">
-          <a href="contacto.vcf" class="action-link action-link-gold" download data-sound="ui">📇 Guardar vCard</a>
-          <a href="https://wa.me/523332187610?text=Hola%20Lic.%20Christian%20L%C3%B3pez,%20le%20contacto%20desde%20su%20oficina%20virtual." class="action-link action-link-glass" target="_blank" rel="noopener noreferrer" data-sound="ui">💬 WhatsApp</a>
-          <a href="tel:+523332187610" class="action-link action-link-glass" data-sound="ui">📞 Llamar</a>
-          <a href="mailto:CHRISTIAN.LOPEZARANDA@OUTLOOK.COM" class="action-link action-link-glass" data-sound="ui">✉️ Enviar Correo</a>
+          
+          <!-- Guardar vCard (Sin atributo download para apertura directa de la agenda del OS) -->
+          <a href="contacto.vcf" class="action-link action-link-gold" data-sound="ui">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2z"/>
+              <circle cx="12" cy="10" r="3"/>
+              <path d="M7 21v-2a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v2"/>
+            </svg>
+            <span>Guardar vCard</span>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/523332187610?text=Hola%20Lic.%20Christian%20L%C3%B3pez,%20le%20contacto%20desde%20su%20oficina%20virtual." class="action-link action-link-glass" target="_blank" rel="noopener noreferrer" data-sound="ui">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+
+          <!-- Llamar -->
+          <a href="tel:+523332187610" class="action-link action-link-glass" data-sound="ui">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>Llamar</span>
+          </a>
+
+          <!-- Enviar Correo -->
+          <a href="mailto:CHRISTIAN.LOPEZARANDA@OUTLOOK.COM" class="action-link action-link-glass" data-sound="ui">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>Enviar Correo</span>
+          </a>
         </div>
       </div>
     </div>
@@ -545,7 +583,15 @@
         </div>
       </div>
 
-      <a href="https://wa.me/523332187610?text=Deseo%20agendar%20una%20asesor%C3%ADa%20en%20Propiedad%20Intelectual" class="action-link action-link-gold" style="margin-top: 16px; width: 100%;" target="_blank" rel="noopener noreferrer" data-sound="ui">Agendar Asesoría en Marcas</a>
+      <a href="https://wa.me/523332187610?text=Deseo%20agendar%20una%20asesor%C3%ADa%20en%20Propiedad%20Intelectual" class="action-link action-link-gold" style="margin-top: 16px; width: 100%;" target="_blank" rel="noopener noreferrer" data-sound="ui">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>Agendar Asesoría en Marcas</span>
+      </a>
     </div>
   </div>
 
@@ -586,7 +632,14 @@
         </div>
       </div>
 
-      <a href="https://despachosanec.com/" class="action-link action-link-gold" style="margin-top: 16px; width: 100%;" target="_blank" rel="noopener noreferrer" data-sound="ui">Consultar Servicios de la Firma</a>
+      <a href="https://despachosanec.com/" class="action-link action-link-gold" style="margin-top: 16px; width: 100%;" target="_blank" rel="noopener noreferrer" data-sound="ui">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        <span>Consultar Servicios de la Firma</span>
+      </a>
     </div>
   </div>
 
@@ -701,7 +754,6 @@
               prop.addEventListener('mouseenter', () => AudioEngine.play('hover'));
             });
           } else {
-            // Retroalimentación visual táctil instantánea para pantallas móviles
             props.forEach(prop => {
               prop.addEventListener('touchstart', () => {
                 prop.classList.add('is-touched');
