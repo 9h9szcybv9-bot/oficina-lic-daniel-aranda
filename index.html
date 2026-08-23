@@ -12,25 +12,25 @@
   <link rel="canonical" href="https://oficinalicdanielaranda.vercel.app/">
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Metadatos Open Graph (Con Cache Busting '?v=1.1' para forzar lectura en WhatsApp) -->
+  <!-- Metadatos Open Graph / WhatsApp / LinkedIn -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="Lic. Christian López | Oficina Virtual">
   <meta property="og:title" content="Lic. Christian López | Propiedad Intelectual &amp; Estrategia Contractual">
   <meta property="og:description" content="Servicios jurídicos especializados en Propiedad Intelectual, registro de marcas y derecho corporativo en Guadalajara, Jalisco.">
   <meta property="og:url" content="https://oficinalicdanielaranda.vercel.app/">
-  <meta property="og:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=1.1">
-  <meta property="og:image:secure_url" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=1.1">
+  <meta property="og:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=2.0">
+  <meta property="og:image:secure_url" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=2.0">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Lic. Christian Daniel López Aranda - Oficina Virtual">
 
-  <!-- Tarjetas para Twitter / X -->
+  <!-- Tarjetas Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Lic. Christian López | Propiedad Intelectual &amp; Estrategia Contractual">
   <meta name="twitter:description" content="Servicios jurídicos especializados en Propiedad Intelectual, registro de marcas y derecho corporativo.">
-  <meta name="twitter:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=1.1">
+  <meta name="twitter:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=2.0">
 
   <!-- PWA & Mobile Engine Configurations -->
   <meta name="theme-color" content="#03050a">
@@ -44,7 +44,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Schema.org JSON-LD para Servicios Jurídicos -->
+  <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -102,7 +102,6 @@
 
     ::-webkit-scrollbar { display: none; }
 
-    /* Fondo Granulado Discreto */
     body::after {
       content: "";
       position: fixed;
@@ -133,7 +132,6 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* Capa de Interfaz y Escritorio */
     .app-scaffold {
       position: relative;
       width: 100%;
@@ -157,7 +155,6 @@
       gap: 12px;
     }
 
-    /* Clases Estructurales */
     .prop-carpeta, .prop-placa, .prop-wrapper {
       width: 32%;
       max-width: 125px;
@@ -181,6 +178,7 @@
       opacity: 0;
       text-decoration: none;
       animation: propReveal 0.7s var(--ease-lux) forwards;
+      transition: transform 0.18s var(--ease-lux);
     }
 
     .prop-totem {
@@ -217,24 +215,22 @@
       width: 100%;
       height: auto;
       filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.85));
-      transition: transform 0.25s var(--ease-lux), filter 0.25s var(--ease-lux);
+      transition: transform 0.22s var(--ease-lux), filter 0.22s var(--ease-lux);
     }
 
-    /* Optimizaciones Visuales para Táctil vs Mouse */
+    /* Estado Hover para Desktop */
     @media (hover: hover) and (pointer: fine) {
       .prop-node:hover img {
-        transform: translateY(-4px) scale(1.03);
-        filter: drop-shadow(0 16px 24px rgba(197, 168, 128, 0.35));
+        transform: translateY(-4px) scale(1.04);
+        filter: drop-shadow(0 16px 26px rgba(197, 168, 128, 0.42));
       }
     }
-    
-    .prop-node:focus-visible img {
-      transform: translateY(-4px) scale(1.03);
-      filter: drop-shadow(0 16px 24px rgba(197, 168, 128, 0.35));
-    }
 
-    .prop-node:active img {
-      transform: scale(0.97);
+    /* Retroalimentación Táctil para Móviles (Micro-interacción Dorada) */
+    .prop-node:active img,
+    .prop-node.is-touched img {
+      transform: scale(0.94) translateY(2px);
+      filter: drop-shadow(0 4px 12px rgba(229, 207, 171, 0.55)) brightness(1.1);
     }
 
     .prop-tag {
@@ -253,6 +249,13 @@
       width: 100%;
       text-align: center;
       white-space: nowrap;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .prop-node:active .prop-tag,
+    .prop-node.is-touched .prop-tag {
+      border-color: var(--color-gold-light);
+      background: rgba(197, 168, 128, 0.25);
     }
 
     /* Sistema de Modales */
@@ -444,9 +447,8 @@
     <img src="bg-oficina-full.webp" class="viewport-bg" alt="Despacho Corporativo - Oficina Virtual" loading="eager">
   </div>
 
-  <!-- Capa Interactiva Accesible -->
+  <!-- Capa Interactiva -->
   <main class="app-scaffold">
-    <!-- Se agrega role="navigation" para tecnologías de asistencia -->
     <section class="desk-interactive" aria-label="Escritorio de navegación principal" role="navigation">
       
       <button class="prop-node prop-carpeta" data-action="open-modal" data-target="modal-servicios" data-sound="leather" aria-haspopup="dialog" aria-controls="modal-servicios">
@@ -482,7 +484,6 @@
       </header>
 
       <div class="profile-card">
-        <!-- H1 Semántico para SEO y Accesibilidad Estructural -->
         <h1 class="profile-title-h1">Lic. Christian Daniel López Aranda</h1>
         <p class="profile-subtitle">Propiedad Intelectual &amp; Estrategia Contractual</p>
         <p class="profile-meta">Cédula Prof. 15550402 | Socio en SANEC</p>
@@ -592,7 +593,7 @@
   <script>
     /**
      * Enterprise Controller & Event Dispatcher 
-     * WEB AUDIO API ENGINE (Zero-Latency for Mobile & Desktop)
+     * WEB AUDIO API + HAPTIC VISUAL ENGINE
      */
     (() => {
       'use strict';
@@ -613,24 +614,21 @@
 
         async init() {
           try {
-            // Compatibilidad cross-browser Web Audio API
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             this.context = new AudioContext();
 
-            // Fetch y decodificación en Buffer (Latencia Cero)
             for (const [key, url] of Object.entries(this.manifest)) {
               const response = await fetch(url);
               const arrayBuffer = await response.arrayBuffer();
               this.buffers[key] = await this.context.decodeAudioData(arrayBuffer);
             }
           } catch (error) {
-            console.warn("AudioEngine Initialization Failed (Corporate Environment Firewall/Policy):", error);
+            console.warn("Audio initialization deferred:", error);
           }
         },
 
         unlock() {
           if (this.unlocked || !this.context) return;
-          // Resume contexto en iOS Safari en el primer 'touchstart'
           if (this.context.state === 'suspended') {
             this.context.resume();
           }
@@ -639,11 +637,10 @@
 
         play(key) {
           if (!this.context || !this.buffers[key]) return;
-          
           const source = this.context.createBufferSource();
           source.buffer = this.buffers[key];
           source.connect(this.context.destination);
-          source.start(0); // Ejecución instantánea
+          source.start(0);
         }
       };
 
@@ -693,19 +690,32 @@
         },
 
         bindEvents() {
-          // Desbloqueo del motor de audio en la primera interacción (Crucial para iOS)
           document.body.addEventListener('touchstart', () => AudioEngine.unlock(), { once: true, passive: true });
           document.body.addEventListener('click', () => AudioEngine.unlock(), { once: true, passive: true });
 
-          // Hover dinámico (Solo Desktop con Mouse)
           const isDesktopWithMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+          const props = document.querySelectorAll('.prop-node');
+
           if (isDesktopWithMouse) {
-            document.querySelectorAll('.prop-node').forEach(prop => {
+            props.forEach(prop => {
               prop.addEventListener('mouseenter', () => AudioEngine.play('hover'));
+            });
+          } else {
+            // Retroalimentación visual táctil instantánea para pantallas móviles
+            props.forEach(prop => {
+              prop.addEventListener('touchstart', () => {
+                prop.classList.add('is-touched');
+              }, { passive: true });
+
+              const clearTouch = () => {
+                setTimeout(() => prop.classList.remove('is-touched'), 150);
+              };
+
+              prop.addEventListener('touchend', clearTouch, { passive: true });
+              prop.addEventListener('touchcancel', clearTouch, { passive: true });
             });
           }
 
-          // Arquitectura de Eventos Delegados (CSP Compliant)
           document.addEventListener('click', (e) => {
             const targetAction = e.target.closest('[data-action]');
             const soundTarget = e.target.closest('[data-sound]');
@@ -732,7 +742,6 @@
             }
           });
 
-          // Accesibilidad de Teclado
           document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.activeModal) {
               this.closeModal(this.activeModal);
