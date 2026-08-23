@@ -12,15 +12,15 @@
   <link rel="canonical" href="https://oficinalicdanielaranda.vercel.app/">
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Metadatos Open Graph / WhatsApp / LinkedIn / iMessage -->
+  <!-- Metadatos Open Graph (Con Cache Busting '?v=1.1' para forzar lectura en WhatsApp) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
   <meta property="og:site_name" content="Lic. Christian López | Oficina Virtual">
   <meta property="og:title" content="Lic. Christian López | Propiedad Intelectual &amp; Estrategia Contractual">
   <meta property="og:description" content="Servicios jurídicos especializados en Propiedad Intelectual, registro de marcas y derecho corporativo en Guadalajara, Jalisco.">
   <meta property="og:url" content="https://oficinalicdanielaranda.vercel.app/">
-  <meta property="og:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg">
-  <meta property="og:image:secure_url" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg">
+  <meta property="og:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=1.1">
+  <meta property="og:image:secure_url" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=1.1">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Lic. Christian López | Propiedad Intelectual &amp; Estrategia Contractual">
   <meta name="twitter:description" content="Servicios jurídicos especializados en Propiedad Intelectual, registro de marcas y derecho corporativo.">
-  <meta name="twitter:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg">
+  <meta name="twitter:image" content="https://oficinalicdanielaranda.vercel.app/Miniatura_URL.jpg?v=1.1">
 
   <!-- PWA & Mobile Engine Configurations -->
   <meta name="theme-color" content="#03050a">
@@ -112,7 +112,6 @@
       z-index: 5;
     }
 
-    /* Contenedor de Escenario */
     .viewport-canvas {
       position: fixed;
       inset: -5vh -5vw;
@@ -158,13 +157,12 @@
       gap: 12px;
     }
 
-    /* Clases Estructurales de Elementos del Escritorio */
+    /* Clases Estructurales */
     .prop-carpeta, .prop-placa, .prop-wrapper {
       width: 32%;
       max-width: 125px;
     }
 
-    /* Contenedor para Tótem y Globo (Efecto Escalonado) */
     .prop-wrapper {
       position: relative;
       display: flex;
@@ -172,7 +170,6 @@
       align-items: center;
     }
 
-    /* Elementos Accionables (Props) */
     .prop-node {
       display: flex;
       flex-direction: column;
@@ -186,13 +183,11 @@
       animation: propReveal 0.7s var(--ease-lux) forwards;
     }
 
-    /* Asignación de anchos a los objetos agrupados */
     .prop-totem {
       width: 100%;
       z-index: 2;
     }
 
-    /* Globo posicionado de forma escalonada */
     .prop-globe {
       position: absolute;
       width: 68%;
@@ -208,7 +203,6 @@
       padding: 5px 8px;
     }
 
-    /* Retrasos de Animación en Cascada */
     .prop-carpeta { animation-delay: 0.8s; }
     .prop-placa { animation-delay: 0.95s; }
     .prop-totem { animation-delay: 1.1s; }
@@ -226,7 +220,14 @@
       transition: transform 0.25s var(--ease-lux), filter 0.25s var(--ease-lux);
     }
 
-    .prop-node:hover img,
+    /* Optimizaciones Visuales para Táctil vs Mouse */
+    @media (hover: hover) and (pointer: fine) {
+      .prop-node:hover img {
+        transform: translateY(-4px) scale(1.03);
+        filter: drop-shadow(0 16px 24px rgba(197, 168, 128, 0.35));
+      }
+    }
+    
     .prop-node:focus-visible img {
       transform: translateY(-4px) scale(1.03);
       filter: drop-shadow(0 16px 24px rgba(197, 168, 128, 0.35));
@@ -445,35 +446,29 @@
 
   <!-- Capa Interactiva Accesible -->
   <main class="app-scaffold">
-    <section class="desk-interactive" aria-label="Escritorio de navegación principal">
+    <!-- Se agrega role="navigation" para tecnologías de asistencia -->
+    <section class="desk-interactive" aria-label="Escritorio de navegación principal" role="navigation">
       
-      <!-- 1: Servicios PI -->
       <button class="prop-node prop-carpeta" data-action="open-modal" data-target="modal-servicios" data-sound="leather" aria-haspopup="dialog" aria-controls="modal-servicios">
         <img src="Carpeta.png" alt="Expediente de Servicios de Propiedad Intelectual">
         <span class="prop-tag">Servicios PI</span>
       </button>
 
-      <!-- 2: Contacto -->
       <button class="prop-node prop-placa" data-action="open-modal" data-target="modal-contacto" data-sound="marble" aria-haspopup="dialog" aria-controls="modal-contacto">
         <img src="Placa_Datos.png" alt="Placa de Identificación Ejecutiva">
         <span class="prop-tag">Contacto</span>
       </button>
 
-      <!-- 3 y 4: Envoltura (Wrapper) para Tótem y Globo Escalonado -->
       <div class="prop-wrapper">
-        
-        <!-- Globo Terráqueo -->
         <a href="https://maps.app.goo.gl/MDNXEfqk6pLuiwy36?g_st=ic" target="_blank" rel="noopener noreferrer" class="prop-node prop-globe" data-sound="globe" aria-label="Ubicación en Google Maps">
           <img src="Globo Terraqueo.png" alt="Globo Terráqueo - Ubicación">
           <span class="prop-tag">Ubicación</span>
         </a>
 
-        <!-- Tótem de Firma Legal -->
         <button class="prop-node prop-totem" data-action="open-modal" data-target="modal-sanec" data-sound="acrylic" aria-haspopup="dialog" aria-controls="modal-sanec">
           <img src="Totem_Sanec.png" alt="Tótem Institucional SANEC Firma Legal">
           <span class="prop-tag">Firma Legal</span>
         </button>
-
       </div>
     </section>
   </main>
@@ -487,6 +482,7 @@
       </header>
 
       <div class="profile-card">
+        <!-- H1 Semántico para SEO y Accesibilidad Estructural -->
         <h1 class="profile-title-h1">Lic. Christian Daniel López Aranda</h1>
         <p class="profile-subtitle">Propiedad Intelectual &amp; Estrategia Contractual</p>
         <p class="profile-meta">Cédula Prof. 15550402 | Socio en SANEC</p>
@@ -595,12 +591,15 @@
 
   <script>
     /**
-     * Enterprise Controller & Event Dispatcher (Audio Pro Engine)
+     * Enterprise Controller & Event Dispatcher 
+     * WEB AUDIO API ENGINE (Zero-Latency for Mobile & Desktop)
      */
     (() => {
       'use strict';
 
-      const AudioController = {
+      const AudioEngine = {
+        context: null,
+        buffers: {},
         manifest: {
           leather: 'Carpeta.wav',
           marble: 'Placa.wav',
@@ -610,26 +609,41 @@
           close: 'Para cerrar..wav',
           hover: 'Cursor o dedo sobre.wav'
         },
-        cache: {},
-        
-        init() {
-          Object.entries(this.manifest).forEach(([key, src]) => {
-            const audio = new Audio(src);
-            audio.preload = 'auto';
-            this.cache[key] = audio;
-          });
+        unlocked: false,
+
+        async init() {
+          try {
+            // Compatibilidad cross-browser Web Audio API
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            this.context = new AudioContext();
+
+            // Fetch y decodificación en Buffer (Latencia Cero)
+            for (const [key, url] of Object.entries(this.manifest)) {
+              const response = await fetch(url);
+              const arrayBuffer = await response.arrayBuffer();
+              this.buffers[key] = await this.context.decodeAudioData(arrayBuffer);
+            }
+          } catch (error) {
+            console.warn("AudioEngine Initialization Failed (Corporate Environment Firewall/Policy):", error);
+          }
+        },
+
+        unlock() {
+          if (this.unlocked || !this.context) return;
+          // Resume contexto en iOS Safari en el primer 'touchstart'
+          if (this.context.state === 'suspended') {
+            this.context.resume();
+          }
+          this.unlocked = true;
         },
 
         play(key) {
-          const track = this.cache[key];
-          if (!track) return;
+          if (!this.context || !this.buffers[key]) return;
           
-          const audioClone = track.cloneNode();
-          const playPromise = audioClone.play();
-          
-          if (playPromise !== undefined) {
-            playPromise.catch(() => {});
-          }
+          const source = this.context.createBufferSource();
+          source.buffer = this.buffers[key];
+          source.connect(this.context.destination);
+          source.start(0); // Ejecución instantánea
         }
       };
 
@@ -637,7 +651,7 @@
         activeModal: null,
 
         init() {
-          AudioController.init();
+          AudioEngine.init();
           this.bindEvents();
         },
 
@@ -645,7 +659,7 @@
           const targetModal = document.getElementById(id);
           if (!targetModal) return;
 
-          if (soundType) AudioController.play(soundType);
+          if (soundType) AudioEngine.play(soundType);
 
           targetModal.classList.add('is-active');
           targetModal.setAttribute('aria-hidden', 'false');
@@ -654,14 +668,14 @@
 
         closeModal(modalEl) {
           if (!modalEl) return;
-          AudioController.play('close');
+          AudioEngine.play('close');
           modalEl.classList.remove('is-active');
           modalEl.setAttribute('aria-hidden', 'true');
           this.activeModal = null;
         },
 
         toggleAccordion(headerBtn) {
-          AudioController.play('ui');
+          AudioEngine.play('ui');
           const currentBlock = headerBtn.closest('.acc-block');
           const parentContainer = currentBlock.parentElement;
           const isExpanded = currentBlock.classList.contains('is-expanded');
@@ -679,26 +693,25 @@
         },
 
         bindEvents() {
-          // DETECCIÓN INTELIGENTE DE HARDWARE:
-          // Solo activar 'hover' sonoro si el usuario cuenta con ratón real (Desktop).
-          // Esto previene que en pantallas táctiles (celulares) suenen 2 audios a la vez al tocar.
-          const isDesktopWithMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+          // Desbloqueo del motor de audio en la primera interacción (Crucial para iOS)
+          document.body.addEventListener('touchstart', () => AudioEngine.unlock(), { once: true, passive: true });
+          document.body.addEventListener('click', () => AudioEngine.unlock(), { once: true, passive: true });
 
+          // Hover dinámico (Solo Desktop con Mouse)
+          const isDesktopWithMouse = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
           if (isDesktopWithMouse) {
-            const props = document.querySelectorAll('.prop-node');
-            props.forEach(prop => {
-              prop.addEventListener('mouseenter', () => AudioController.play('hover'));
+            document.querySelectorAll('.prop-node').forEach(prop => {
+              prop.addEventListener('mouseenter', () => AudioEngine.play('hover'));
             });
           }
 
-          // Delegación Centralizada de Eventos Click
+          // Arquitectura de Eventos Delegados (CSP Compliant)
           document.addEventListener('click', (e) => {
             const targetAction = e.target.closest('[data-action]');
             const soundTarget = e.target.closest('[data-sound]');
 
-            // Reproducir sonido primario al hacer click/tap (Globo u otros sin modal directo)
             if (soundTarget && (!targetAction || targetAction.dataset.action !== 'open-modal')) {
-              AudioController.play(soundTarget.dataset.sound);
+              AudioEngine.play(soundTarget.dataset.sound);
             }
 
             if (!targetAction) {
@@ -719,7 +732,7 @@
             }
           });
 
-          // Cierre accesible con tecla Escape
+          // Accesibilidad de Teclado
           document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.activeModal) {
               this.closeModal(this.activeModal);
